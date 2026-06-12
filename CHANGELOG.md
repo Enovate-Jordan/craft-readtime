@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.1.0 - 2026-06-12
+
+### Added
+- Neo field support. `readTime` now calculates read time for content stored in [Neo](https://github.com/spicywebau/craft-neo) fields, both when a Neo field is passed directly to the function/filter and when an entry containing a Neo field is passed ([#15](https://github.com/jalendport/craft-readtime/issues/15)). Original contribution by Matt Jones ([@icreatestuff](https://github.com/icreatestuff)) in [#21](https://github.com/jalendport/craft-readtime/pull/21). Neo is treated as an optional, soft dependency — the plugin continues to load and compute read time on sites without Neo installed.
+
 ## 2.0.0 - 2026-06-12
 
 > Stable Craft 4 release.
