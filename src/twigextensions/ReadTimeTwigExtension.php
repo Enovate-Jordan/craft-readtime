@@ -10,6 +10,8 @@
 
 namespace jalendport\readtime\twigextensions;
 
+use benf\neo\elements\Block as NeoBlock;
+use benf\neo\Field as NeoField;
 use Craft;
 use craft\elements\Entry;
 use craft\elements\MatrixBlock;
@@ -58,8 +60,8 @@ class ReadTimeTwigExtension extends AbstractExtension
 
             foreach ($element->getFieldLayout()->getCustomFields() as $field) {
                 try {
-                    // If field is a matrix then loop through fields in block
-                    if ($field instanceof Matrix) {
+                    // If field is a matrix or neo field then loop through fields in block
+                    if ($field instanceof Matrix || $field instanceof NeoField) {
                         foreach($element->getFieldValue($field->handle)->all() as $block) {
                             $blockFields = $block->getFieldLayout()->getCustomFields();
 
@@ -101,11 +103,11 @@ class ReadTimeTwigExtension extends AbstractExtension
                 }
             }
         } elseif(is_array($element)) {
-            // Provided value is a matrix field
-            Craft::info('matrix field provided', 'readtime');
+            // Provided value is a matrix or neo field
+            Craft::info('matrix or neo field provided', 'readtime');
 
             foreach ($element as $block) {
-                if ($block instanceof MatrixBlock) {
+                if ($block instanceof MatrixBlock || $block instanceof NeoBlock) {
                     $blockFields = $block->getFieldLayout()->getCustomFields();
 
                     foreach ($blockFields as $blockField) {
